@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- jQuery文件 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="row" id ="ab">
+        <!-- <div class="col-lg-2 col-sm-3 col-xs-4" style="background-color: blueviolet">
+            <a href="#">
+                 <img src="https://image14.m1905.cn/uploadfile/2019/0325/thumb_1_150_203_20190325034005594267.jpg" class="thumbnail img-responsive">
+            </a>
+        </div> -->
+    </div>   
+</body>
+<script>
+ window.onload=function(){
+     $.ajax({
+         type: "GET",
+         url:"./result.json",
+         dataType: "json",
+         success:function(res){
+           for(var i=0;i<res.length;i++){
+            var obj = res[i];
+            var node = document.createElement("div");
+            node.className = "col-lg-2 col-sm-3 col-xs-4";
+            var cNode = document.createTextNode(obj.title+"\n");
+            node.appendChild(cNode);
+            var aNode = document.createElement("a");
+            aNode.setAttribute("href","#");
+            node.appendChild(aNode);
+            var bNode =document.createElement("img");
+            bNode.className = "thumbnail img-responsive";
+            bNode.src = obj.imgUrl;
+            aNode.appendChild(bNode);
+            // var dNode = document.createTextNode("'"+obj.info+"'\n");
+            // node.appendChild(dNode);
+            document.getElementById("ab").appendChild(node);
+             }
+         }
+         
+     })
+ }
+</script>
+</html>
